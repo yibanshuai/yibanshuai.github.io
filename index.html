@@ -66,13 +66,35 @@ p {
     margin-top: 0; /* 上移5行 */
     margin-bottom: 5em;
 }
+
+#touch-area {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5em;
+    cursor: pointer;
+    z-index: 9999; /* 确保在最上层 */
+}
 </style>
 </head>
 <body>
-<audio id="background-audio" autoplay loop>
+<audio id="background-audio" loop>
   <source src="音乐.mp3" type="audio/mp3">
   您的浏览器不支持音频元素。
 </audio>
+
+<!-- 触摸区域 -->
+<div id="touch-area">
+  触摸屏幕以播放音乐
+</div>
+
 <div id="main">
   <div id="error" style="display: none;">本页面采用HTML5编辑，目前您的浏览器无法显示，请换成谷歌(Chrome)或者火狐(Firefox)浏览器，或者其他游览器的最新版本。</div>
   <div id="wrap">
@@ -102,6 +124,13 @@ p {
   </div>
 </div>
 <script>
+    // 添加触摸事件来播放音乐
+    document.getElementById('touch-area').addEventListener('touchstart', function() {
+        var audio = document.getElementById('background-audio');
+        audio.play();
+        this.style.display = 'none'; // 隐藏触摸区域
+    });
+
     (function(){
         var canvas = $('#canvas');
 		
@@ -257,9 +286,6 @@ p {
         runAsync().start();
     })();
     </script>
-
-
-</div>
 
 </body>
 </html>
