@@ -66,7 +66,7 @@ p {
     margin-bottom: 5em;
 }
 
-#touch-area {
+#play-button {
     position: fixed;
     top: 0;
     left: 0;
@@ -90,9 +90,9 @@ p {
   您的浏览器不支持音频元素。
 </audio>
 
-<!-- 触摸区域 -->
-<div id="touch-area">
-  触摸屏幕以播放音乐
+<!-- 播放按钮 -->
+<div id="play-button">
+  点击或触摸屏幕以播放音乐
 </div>
 
 <div id="main">
@@ -124,8 +124,8 @@ p {
   </div>
 </div>
 <script>
-    // 添加触摸事件来播放音乐
-    document.getElementById('touch-area').addEventListener('touchstart', function() {
+    // 添加点击或触摸事件来播放音乐
+    document.getElementById('play-button').addEventListener('click', function() {
         var audio = document.getElementById('background-audio');
         audio.play().then(function() {
             // 音乐播放成功
@@ -134,7 +134,7 @@ p {
             // 音乐播放失败
             console.log('Music play failed', error);
         });
-        this.style.display = 'none'; // 隐藏触摸区域
+        this.style.display = 'none'; // 隐藏按钮
     });
 
     (function(){
