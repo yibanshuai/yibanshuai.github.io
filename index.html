@@ -54,7 +54,6 @@ body {
     line-height: 1.5;
     text-indent: 2em; /* 首行缩进两个字符 */
     font-family: 'KaiTi', '楷体', 'STKaiti', 'Kaiti SC', 'Kaiti TC', serif; /* 使用楷书字体 */
-
 }
 
 p {
@@ -87,6 +86,7 @@ p {
 <body>
 <audio id="background-audio" loop>
   <source src="音乐.mp3" type="audio/mp3">
+  <source src="音乐.ogg" type="audio/ogg">
   您的浏览器不支持音频元素。
 </audio>
 
@@ -127,7 +127,13 @@ p {
     // 添加触摸事件来播放音乐
     document.getElementById('touch-area').addEventListener('touchstart', function() {
         var audio = document.getElementById('background-audio');
-        audio.play();
+        audio.play().then(function() {
+            // 音乐播放成功
+            console.log('Music started playing');
+        }).catch(function(error) {
+            // 音乐播放失败
+            console.log('Music play failed', error);
+        });
         this.style.display = 'none'; // 隐藏触摸区域
     });
 
